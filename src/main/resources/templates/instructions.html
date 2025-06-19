@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructions</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --background: #f3f4f6;
+            --card-bg: #ffffff;
+            --error: #dc2626;
+            --success: #16a34a;
+            --warning: #d97706;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, var(--background) 0%, #e0e7ff 100%);
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            background: var(--card-bg);
+            padding: clamp(1.5rem, 5vw, 2rem);
+            border-radius: 1rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-size: clamp(1.5rem, 5vw, 1.75rem);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        h3 {
+            color: var(--text);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        ol li {
+            margin-bottom: 0.75rem;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .code-block {
+            background: #f9fafb;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+            font-family: 'Menlo', 'Consolas', monospace;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:focus {
+            outline: 2px solid var(--primary-dark);
+            outline-offset: 2px;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .error-message {
+            color: var(--error);
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.25rem;
+                max-width: 95%;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.15rem;
+            }
+
+            p, ol li, ul li {
+                font-size: 0.95rem;
+            }
+
+            .code-block {
+                font-size: 0.85rem;
+            }
+
+            .btn-primary {
+                padding: 0.65rem 1rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container" role="main" aria-labelledby="instructions-title">
+    <div>
+        <h2 id="instructions-title">How to Use the Message Broker</h2>
+        <div th:if="${error}" class="error-message" role="alert">
+            <span th:text="${error}"></span>
+        </div>
+
+        <h3>1. Setting Up Your GitHub Token</h3>
+        <p>
+            A GitHub personal access token is required to interact with GitHub APIs, such as accessing Discussions in your repositories. Follow these steps to create one:
+        </p>
+        <ol>
+            <li>Go to <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)</a>.</li>
+            <li>Click <strong>Generate new token (classic)</strong>.</li>
+            <li>Enter a <strong>Note</strong> to describe the token (e.g., "App Token").</li>
+            <li>Select an <strong>Expiration</strong> period (e.g., 30 days or No expiration).</li>
+            <li>Under <strong>Select scopes</strong>, check:
+                <ul>
+                    <li><strong>repo</strong>: Grants full control over both private and public repositories, including Discussions.</li>
+                    <li><strong>write:discussion</strong>: Specifically allows creating and updating GitHub Discussions.</li>
+                    <li><strong>read:user</strong>: Allows read-only access to your user profile (found under the "user" section of scopes).</li>
+                </ul>
+            </li>
+            <li>Click <strong>Generate token</strong> and copy the token (starts with <code>ghp_</code>).</li>
+            <li><strong>Security Tip</strong>: Store the token securely and never share it publicly. You won’t see it again after leaving the page.</li>
+        </ol>
+
+        <h3>2. Enabling GitHub Discussions in Repositories</h3>
+        <p>
+            Your application interacts with repositories where GitHub Discussions are enabled. Here’s how to set it up:
+        </p>
+        <ol>
+            <li>Open your repository on GitHub (e.g., <code>https://github.com/username/repo</code>).</li>
+            <li>Go to <strong>Settings → General</strong>.</li>
+            <li>Scroll to the <strong>Features</strong> section.</li>
+            <li>Check the box for <strong>Discussions</strong> to enable it.</li>
+            <li>Verify by navigating to the <strong>Discussions</strong> tab in your repository. You should see options to create new discussions.</li>
+            <li>Repeat for each repository you want to use with this application.</li>
+        </ol>
+
+        <h3>3. Creating an Application</h3>
+        <p>
+            You must be signed in to create an app. If you don’t have an account, <a href="/register">Sign Up</a> or <a href="/login">Sign In</a>.
+        </p>
+        <p>
+            Create an app on the <a href="/app/create">Create App</a> page to configure your Discussion bot:
+        </p>
+        <ol>
+            <li>Navigate to <a href="/app/create">/app/create</a> or press <a href="/app/create">Create App</a> from the Home page.</li>
+            <li>Fill in the form:
+                <ul>
+                    <li><strong>Name</strong>: Enter a unique name (e.g., "Discussion Bot").</li>
+                    <li><strong>GitHub Token</strong>: Paste the token you generated (it’s masked for security).</li>
+                    <li><strong>Prompt</strong>: Write instructions for your app’s behavior.</li>
+                </ul>
+            </li>
+            <li>Click <strong>Create</strong> to save the app.</li>
+        </ol>
+        <p><strong>Writing Effective Prompts</strong>:</p>
+        <ul>
+            <li>Be clear and specific (e.g., “Monitor GitHub Discussions in my repository and summarize new posts daily.”).</li>
+            <li>Include context (e.g., “Act as a bot that responds to questions in Discussions with helpful answers.”).</li>
+            <li>Avoid ambiguity (e.g., instead of “Do something with Discussions,” say “Post a welcome message in new Discussions.”).</li>
+            <li><strong>Example Prompt</strong>: “You are a GitHub Discussions assistant. For each new discussion in my repository, post a reply: ‘Thanks for starting this discussion! I’ll help answer your questions.’ Use the provided GitHub token to access the repo.”</li>
+        </ul>
+
+        <h3>4. Adding a GitHub Actions Workflow</h3>
+        <p>
+            To automate your app’s interaction with Discussions, add a GitHub Actions workflow to your repository’s (project's) root. This script runs your app’s logic (e.g., posting in Discussions).
+        </p>
+        <ol>
+            <li>In your repository (project), create a directory: <code>.github/workflows/</code>.</li>
+            <li>Create a new file (e.g., <code>discussion-bot.yml</code>) in <code>.github/workflows/</code>.</li>
+            <li>Copy the <strong>workflow script</strong> below into the file.</li>
+            <li>Add secrets in GitHub:
+                <ul>
+                    <li>Go to <strong>Settings → Secrets and variables → Actions → New repository secret</strong>.</li>
+                    <li>Add <code>APP_TOKEN</code> (copy from the app <strong>details</strong> page at <a href="/app/view">/app/view</a>).</li>
+                    <li>Add <code>SERVER_URL</code> (<code>https://message-broker.atai-mamytov.click</code>).</li>
+                </ul>
+            </li>
+            <li>Commit the file to your repository’s main branch.</li>
+            <div class="code-block">
+                <pre>git add .</pre>
+                <pre>git commit -m "Your commit"</pre>
+                <pre>git push -u origin main</pre>
+            </div>
+            <li>Go to the <strong>Actions</strong> tab in your repository to verify the workflow runs.</li>
+        </ol>
+        <p><strong>Workflow Script</strong>:</p>
+        <div class="code-block">
+            <pre>
+name: Notify Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Notify Server with Retries
+        env:
+          SERVER_URL: ${{ secrets.SERVER_URL }}
+        run: |
+          MAX_RETRIES=5
+          RETRY_DELAY=5
+          COUNTER=0
+
+          while [ $COUNTER -lt $MAX_RETRIES ]; do
+            RESPONSE=$(curl -s -o response.txt -w "%{http_code}" -X POST "$SERVER_URL/api/forward?appToken=${{ secrets.APP_TOKEN }}&repositoryName=${{ github.repository }}&currentCommit=${{ github.sha }}&prevCommit=${{ github.event.before }}&pusherName=${{ github.actor }}")
+
+            if [ "$RESPONSE" -eq 200 ]; then
+              echo "Notification sent successfully!"
+              exit 0
+            else
+              echo "Failed to notify server (HTTP $RESPONSE), response: $(cat response.txt)"
+              echo "Retrying in $RETRY_DELAY seconds..."
+              sleep $RETRY_DELAY
+              COUNTER=$((COUNTER + 1))
+            fi
+          done
+
+          echo "Failed to notify server after $MAX_RETRIES attempts. Final response: $(cat response.txt)"
+          exit 1
+</pre>
+        </div>
+        <p>
+            <strong>Notes</strong>:
+        <ul>
+            <li>Store your app’s token in GitHub Secrets (<strong>Settings → Secrets and variables → Actions → New repository secret</strong>).</li>
+            <li>Ensure Discussions are enabled, or the workflow won’t trigger.</li>
+            <li>
+                Keep your GitHub token scopes minimal — only select what’s necessary (e.g., <code>repo</code>, <code>write:discussion</code>, <code>read:user</code>).
+                Avoid granting more permissions than required.
+            </li>
+        </ul>
+        </p>
+    </div>
+</div>
+</body>
+</html>

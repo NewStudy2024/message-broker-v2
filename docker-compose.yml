@@ -1,0 +1,49 @@
+services:
+  app:
+    image: message-broker-v2:latest
+    container_name: message-broker-v2
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"
+    environment:
+      SPRING_APPLICATION_NAME: ${SPRING_APPLICATION_NAME}
+      SERVER_PORT: ${SERVER_PORT}
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME}
+      SPRING_JPA_DATABASE_PLATFORM: ${SPRING_JPA_DATABASE_PLATFORM}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
+      SPRING_JPA_SHOW_SQL: ${SPRING_JPA_SHOW_SQL}
+      SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: ${SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL}
+      SPRING_JPA_PROPERTIES_HIBERNATE_TYPE: ${SPRING_JPA_PROPERTIES_HIBERNATE_TYPE}
+      SPRINGDOC_API_DOCS_PATH: ${SPRINGDOC_API_DOCS_PATH}
+      SPRINGDOC_SWAGGER_UI_PATH: ${SPRINGDOC_SWAGGER_UI_PATH}
+    depends_on:
+      - postgres
+    networks:
+      - shared_network
+
+  postgres:
+    image: postgres:15
+    container_name: spring-database
+    restart: always
+    environment:
+      POSTGRES_USER: example-database
+      POSTGRES_PASSWORD: example-database-password
+      POSTGRES_DB: example-database
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - shared_network
+
+volumes:
+  pgdata:
+
+networks:
+  shared_network:
+    external: true
