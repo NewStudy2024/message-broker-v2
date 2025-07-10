@@ -26,6 +26,8 @@ Good luck with your evaluation!
 
 # Project Description (70%)
 
+## [Links](https://www.notion.so/Programming-Project-22ba2f4637f480739880dc0a15eb117e?source=copy_link)
+
 ## [Message Broker](https://message-broker.atai-mamytov.click/login)
 
 Message Broker v2 is an advanced web application built with Spring Boot, designed to automate the generation of insightful GitHub discussion comments based on commit and push events. Leveraging the GitHub API and an external AI microservice (e.g., Gemini), this application enhances developer productivity by creating context-aware discussions. An upgrade from the single-user Broker.v1, v2 supports multiple users, customizable prompts, and a user-friendly web interface.
@@ -174,6 +176,14 @@ Please showcase **two** areas where you have used object orientation and explain
 Examples in java of good oo design are encapsulation, inheritance, polymorphism, and abstraction.
 
 So, as was mentioned before Spring build on OOP and on MVC Pattern
+Where we have all concepts OOP, which were demeaned before in Concepts OOP
+
+##### MVC
+  * Models : https://github.com/NewStudy2024/message-broker-v2/tree/main/src/main/java/app/v2/messagebroker/model
+    * Also repository part : https://github.com/NewStudy2024/message-broker-v2/tree/main/src/main/java/app/v2/messagebroker/repository
+  * Controllers : https://github.com/NewStudy2024/message-broker-v2/tree/main/src/main/java/app/v2/messagebroker/controller
+  * Views inside controllers
+  * Business logic services : https://github.com/NewStudy2024/message-broker-v2/tree/main/src/main/java/app/v2/messagebroker/service
 
 | Total Achievable Points | Points Reached During Grading |
 |------------------------|-------------------------------|
@@ -193,7 +203,7 @@ Test cases usually cover the following areas:
 * normal cases
 * error cases / catching exceptions
 
-Testing are here: https://github.com/NewStudy2024/message-broker-v2/tree/main/src/test/java/app/v2/messagebroker
+Testing for all project here : https://github.com/NewStudy2024/message-broker-v2/tree/main/src/test/java/app/v2/messagebroker
 
 
 | Total Achievable Points | Points Reached During Grading |
@@ -205,7 +215,10 @@ Testing are here: https://github.com/NewStudy2024/message-broker-v2/tree/main/sr
 An example of operator overloading is the "+" operator that can be used to add two numbers or concatenate two strings. An example of method overloading is having two methods with the same name but different parameters. Please provide an example of how you have used operator or method overloading in your code and explain why you have chosen this method of coding.
 The link does not have to be to your project and can be to your practice code.
 
-*your text*
+Again since it is Spring Project, all Beans are overloading methods
+
+Example from project: @Controller, @Model and etc.
+https://github.com/NewStudy2024/message-broker-v2/blob/main/src/main/java/app/v2/messagebroker/controller/AppController.java
 
 | Total Achievable Points | Points Reached During Grading |
 |------------------------|-------------------------------|
@@ -217,8 +230,8 @@ The link does not have to be to your project and can be to your practice code.
 ### Q8. Templates/Generics
 Generics in java are used to create classes, interfaces, and methods that operate on objects of specified types. Please provide an example of how you have used generics in your code and explain why you have chosen to use generics. The link does not have to be to your project and can be to your practice code.
 
-
-*your text*
+Interfaces: https://github.com/NewStudy2024/message-broker-v2/blob/main/src/main/java/app/v2/messagebroker/repository/AppRepository.java
+Implementation of interface : https://github.com/NewStudy2024/message-broker-v2/blob/main/src/main/java/app/v2/messagebroker/controller/CustomErrorController.java
 
 | Total Achievable Points | Points Reached During Grading |
 |------------------------|-------------------------------|
@@ -228,8 +241,8 @@ Generics in java are used to create classes, interfaces, and methods that operat
 ### Q9. Class Libraries
 Examples of class libraries in java are the Java Standard Library, JavaFX, Apache Commons, JUnit, Log4j, Jackson, Guava, Joda-Time, Hibernate, Spring, Maven, and many more. Please provide an example of how you have used a class library in your **project** code and explain why you have chosen to use this class library.
 
-https://github.com/NewStudy2024/message-broker-v2/blob/main/pom.xml
-
+POM.xml where all links : https://github.com/NewStudy2024/message-broker-v2/blob/main/pom.xml
+lombok, postgresql, spring-boot-starter-web, spring-boot-starter-security, thymeleaf-extras-springsecurity6, springdoc-openapi-starter-webmvc-ui, junit-jupiter
 
 | Total Achievable Points | Points Reached During Grading |
 |------------------------|-------------------------------|
@@ -247,12 +260,13 @@ Which one did you choose:
 * [ ] API
 * [ ] Deployment
 
-
+I implemented :
+  * API
+  * Deployment
+  * Database Connected
+  * Web Interface with Design
 
 https://message-broker.atai-mamytov.click/login
-
-so Web, deployment, DB
-
 
 | Total Achievable Points | Points Reached During Grading |
 |------------------------|-------------------------------|
@@ -264,12 +278,21 @@ so Web, deployment, DB
 # Speed Coding (20%)
 Please enter **three** Links to your speed coding session GITs and name your partner.
 
-https://github.com/NewStudy2024/programming-second-semestr-atai
 
+- Week2 - [Grade management project](https://github.com/NewStudy2024/programming-second-semestr-atai/tree/main/src/main/java/app/v1/week2) - Partner "Sahil"
+- Week3 - [Car rental project](https://github.com/NewStudy2024/programming-second-semestr-atai/tree/main/src/main/java/app/v1/week3) - Partner "Daniel"
+- Week4 - [Inventory management system project](https://github.com/NewStudy2024/programming-second-semestr-atai/tree/main/src/main/java/app/v1/week4) - Partner "Niki"
+- Week5 - [Vibe Coding](https://github.com/NewStudy2024/programming-second-semestr-atai/tree/main/src/test/java/v1)
+
+### OOP Pillars Links
+- [Encapsulation](https://github.com/NewStudy2024/programming-second-semestr-atai/blob/main/src/main/java/app/v1/week2/Subject.java)
+- [Inheritance, Polymorphism](https://github.com/NewStudy2024/programming-second-semestr-atai/blob/main/src/main/java/app/v1/week4/HomePageServlet.java)
 
 Paste your class diagram for your project that you developed during the peer review class here:
 
-*your image*
+https://eu02web.zoom.us/wb/doc/BXz7ouidQoqR3HKB_x7ZTg/p/161424972578816?moveToTarget=163774291650616
+https://eu02web.zoom.us/wb/doc/BXz7ouidQoqR3HKB_x7ZTg/p/161424972578816?moveToTarget=102248327901348
+https://eu02web.zoom.us/wb/doc/BXz7ouidQoqR3HKB_x7ZTg/p/161424972578816?moveToTarget=51615531411886
 
 It can be done very simply by just copying any image and pasting it while editing Readme.md.
 
