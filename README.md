@@ -1,4 +1,8 @@
-# Message Broker v2
+# [Message Broker v2](https://message-broker.atai-mamytov.click/login)
+
+## [Instructions](https://message-broker.atai-mamytov.click/instructions)
+
+## PS: Use [this](https://github.com/coffee3333/test2/blob/main/.github/workflows/ci.yml) workflow
 
 ## Overview
 Message Broker v2 is an advanced web application built with Spring Boot, designed to automate the generation of insightful GitHub discussion comments based on commit and push events. Leveraging the GitHub API and an external AI microservice (e.g., Gemini), this application enhances developer productivity by creating context-aware discussions. An upgrade from the single-user Broker.v1, v2 supports multiple users, customizable prompts, and a user-friendly web interface.
